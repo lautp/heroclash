@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
+
+import AuthContext from '../context/auth/authContext';
+import HeroContext from '../context/hero/heroContext';
 
 const InputField = ({ label, ...props }) => {
   
@@ -34,7 +37,14 @@ const InputField = ({ label, ...props }) => {
 };
 
 const Login = () => {
-  
+
+  const authContext = useContext(AuthContext);
+  const { token, login } = authContext;
+
+  const heroContext = useContext(HeroContext);
+
+  const {clearResults} = heroContext;
+
   return (
     <>
       <Formik
@@ -47,11 +57,20 @@ const Login = () => {
             .email('Invalid email address')
             .required('Required'),
           password: Yup.string()
-            .min(8, 'Must be at least 8 characters')
+            .min(4, 'Must be at least 4 characters')
             .required('Required')
         })}
         onSubmit={(values, { setSubmitting }) => {
-          console.log('sup')
+
+          const email = values.email;
+          const password = values.password;
+          
+          login({email, password});
+
+          setTimeout(()=>{
+            document.location.reload(true);
+          },1000)
+
         }}
       >
         <Form>
@@ -72,7 +91,7 @@ const Login = () => {
                           label="Password"
                           name="password"
                           type="password"
-                          placeholder="Min 8 chars"
+                          placeholder="Min 4 chars"
                       />
                   </div>
               </div>

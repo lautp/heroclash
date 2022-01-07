@@ -1,0 +1,11 @@
+export const RESULTS = 'RESULTS';
+export const CLEAR_RESULTS = 'CLEAR_RESULTS';
+export const IMAGES = 'IMAGES';
+export const ADD_HERO = 'ADD_HERO';
+export const USER_LOADED = 'USER_LOADED';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const IS_AUTH = 'IS_AUTH';
